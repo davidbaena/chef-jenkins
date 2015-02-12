@@ -76,6 +76,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision :chef_solo do |chef|
    chef.cookbooks_path = ["~/.berkshelf/cookbooks"]
-    chef.run_list = []
+    chef.run_list = ['jenkins::master']
   end
 end
