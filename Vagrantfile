@@ -64,7 +64,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Enabling the Berkshelf plugin. To enable this globally, add this configuration
   # option to your ~/.vagrant.d/Vagrantfile file
-  config.berkshelf.enabled = true
+  #config.berkshelf.enabled = true
 
   # An array of symbols representing groups of cookbook described in the Vagrantfile
   # to exclusively install and copy to Vagrant's shelf.
@@ -75,16 +75,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # config.berkshelf.except = []
 
   config.vm.provision :chef_solo do |chef|
-    chef.json = {
-      mysql: {
-        server_root_password: 'rootpass',
-        server_debian_password: 'debpass',
-        server_repl_password: 'replpass'
-      }
-    }
-
-    chef.run_list = [
-      'recipe[chef-repo::default]'
-    ]
+   chef.cookbooks_path = ["~/.berkshelf/cookbooks"]
+    chef.run_list = []
   end
 end
